@@ -1,5 +1,6 @@
 //! rsw link
 
+use std::collections::HashMap;
 use std::path::PathBuf;
 
 use crate::core::RswInfo;
@@ -22,7 +23,19 @@ impl Link {
         if self.cli == "pnpm" {
             self.pnpm_link();
         }
+        if self.cli == "bun" {
+            self.bun_link()
+        }
     }
+
+    pub fn bun_link(&self) {
+        // bun link --cwd <root>/<name>
+        os_cli(self.cli.clone(), ["link".into(), "--cwd".into(), self.cwd.to_string_lossy().into()].to_vec(), get_root());
+
+        // bun link --cwd <root> <name> --save
+        os_cli(self.cli.clone(), ["link".into(), "--save".into(), self.name.clone()].to_vec(), get_root());
+    }
+
     pub fn npm_link(cli: String, crates: Vec<String>) {
         os_cli(cli, [&["link".into()], &crates[..]].concat(), get_root());
         print(RswInfo::CrateLink("npm link".into(), crates.join(" ")));
@@ -62,7 +75,16 @@ impl Link {
         ));
     }
 
-    pub fn unlink(cli: &String, crates: Vec<String>) {
+    pub fn unlink(cli: &String, crates: Vec<String>, path_map: &HashMap<String, PathBuf>) {
+        if cli == "bun" {
+            // cd <root>/name
+            // bun unlink
+            for (_crate, _path) in path_map {
+                os_cli(cli.clone(), ["unlink".into()].to_vec(), _path);
+            }
+            return;
+        }
+
         let root = get_root();
 
         // <yarn|pnpm> unlink foo bar

@@ -30,7 +30,7 @@ impl Clean {
             crates.push(rsw_crate.name);
         }
 
-        Link::unlink(&config.cli.unwrap(), crates);
+        Link::unlink(&config.cli.unwrap(), crates, &path_map);
 
         for (_crate, _path) in path_map {
             std::fs::remove_dir_all(_path).unwrap();
