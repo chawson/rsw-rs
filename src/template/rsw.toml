@@ -8,9 +8,10 @@ interval = 50
 #! npm link @see https://docs.npmjs.com/cli/v8/commands/npm-link
 #! yarn link @see https://classic.yarnpkg.com/en/docs/cli/link
 #! pnpm link @see https://pnpm.io/cli/link
+#! bun link @see https://bun.sh/docs/cli/link
 #! The link command will only be executed if `[[crates]] link = true`
-#! cli: `npm` | `yarn` | `pnpm`, default is `npm`
-cli = "npm"
+#! cli: `npm` | `yarn` | `pnpm` | `bun`, default is `npm`
+cli = "bun"
 
 #! ---------------------------
 
