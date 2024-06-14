@@ -89,7 +89,7 @@ Create `rsw.toml` in the project root path, configure the `rust crate` parameter
 - **`name`** - Profile name (optional)
 - **`version`** - Profile version (optional)
 - **`interval`** - Development mode `rsw watch`, time interval for file changes to trigger `wasm-pack build`, default `50` milliseconds
-- **`cli`** - `npm` | `yarn` | `pnpm`, default is `npm`. Execute `link` using the specified `cli`, e.g. `npm link`
+- **`cli`** - `npm` | `yarn` | `pnpm` | `bun`, default is `npm`. Execute `link` using the specified `cli`, e.g. `npm link`
 - **`[new]`** - Quickly generate a crate with `wasm-pack new`, or set a custom template in `rsw.toml -> [new] -> using`
   - **`using`** - `wasm-pack` | `rsw` | `user`, default is `wasm-pack`
     - `wasm-pack` - `rsw new <name> --template <template> --mode <normal|noinstall|force>` [wasm-pack new doc](https://rustwasm.github.io/docs/wasm-pack/commands/new.html)
@@ -140,8 +140,9 @@ interval = 50
 #! npm link @see https://docs.npmjs.com/cli/v8/commands/npm-link
 #! yarn link @see https://classic.yarnpkg.com/en/docs/cli/link
 #! pnpm link @see https://pnpm.io/cli/link
+#! bun link @see https://bun.sh/docs/cli/link
 #! The link command will only be executed if `[[crates]] link = true`
-#! cli: `npm` | `yarn` | `pnpm`, default is `npm`
+#! cli: `npm` | `yarn` | `pnpm` | `bun`, default is `npm`
 cli = "npm"
 
 #! ---------------------------

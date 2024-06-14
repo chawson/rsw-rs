@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.1
+
+- feat: `config.cli` suppports `bun` runtime 
+
 ## 0.8.0
 
 - feat: `rsw.toml` adds `scope` field
